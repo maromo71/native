@@ -173,6 +173,7 @@ const App = () => {
       handleOperator(value);
     }
   };
+  
 
   const handleNumber = (num) => {
     if (waitingForSecondOperand) {
@@ -200,10 +201,10 @@ const App = () => {
 
   const calculate = () => {
     const secondOperand = parseFloat(displayValue);
-
+  
     if (operator && firstOperand != null && !isNaN(secondOperand)) {
       let result;
-
+  
       switch (operator) {
         case '+':
           result = firstOperand + secondOperand;
@@ -220,14 +221,16 @@ const App = () => {
         default:
           return;
       }
-
+  
       setOperator(null);
       setFirstOperand(result);
-      setWaitingForSecondOperand(true);
+      setDisplayValue(String(result));  // Update display with the result
+      setWaitingForSecondOperand(true); // Prepare for the next input
       return result;
     }
     return displayValue;
   };
+  
 
   const clear = () => {
     setDisplayValue('');
